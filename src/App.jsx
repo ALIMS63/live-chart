@@ -1,8 +1,8 @@
-import { useState } from "react"
-import Highcharts from "highcharts/highstock"
-import HighchartsReact from "highcharts-react-official"
-import HC_more from "highcharts/highcharts-more" //module
-HC_more(Highcharts) //init module
+import { useState } from "react";
+import Highcharts from "highcharts/highstock";
+import HighchartsReact from "highcharts-react-official";
+import HC_more from "highcharts/highcharts-more"; //module
+HC_more(Highcharts); //init module
 
 export const App = () => {
 	const [options] = useState({
@@ -10,15 +10,14 @@ export const App = () => {
 			events: {
 				load: function () {
 					// set up the updating of the chart each second
-					const series = this?.series?.[0]
+					const series = this?.series?.[0];
 					setInterval(function () {
-						const x = new Date().getTime() // current time
-						const y = Math.round(Math.random() * 100)
-						series.addPoint([x, y], true, true)
-					}, 1000)
+						const x = new Date().getTime(); // current time
+						const y = Math.round(Math.random() * 100);
+						series.addPoint([x, y], true, true);
+					}, 1000);
 				},
 			},
-			backgroundColor: "#202036",
 			color: "white",
 			type: "spline",
 		},
@@ -57,27 +56,29 @@ export const App = () => {
 
 		series: [
 			{
-				name: "Random data",
+				name: "point value",
 				data: (function () {
 					// generate an array of random data
-					var data = [],
-						time = new Date().getTime(),
-						i
+					const data = [];
+					const time = new Date().getTime();
 
-					for (i = -999; i <= 0; i += 1) {
-						data.push([time + i * 1000, Math.round(Math.random() * 100)])
+					for (let i = -999; i <= 0; i += 1) {
+						data.push([
+							time + i * 1000,
+							Math.round(Math.random() * 100),
+						]);
 					}
-					return data
+					return data;
 				})(),
 			},
 		],
-	})
+	});
 
 	return (
 		<HighchartsReact
-			constructorType={"stockChart"}
+			constructorType="stockChart"
 			highcharts={Highcharts}
 			options={options}
 		/>
-	)
-}
+	);
+};

@@ -25,6 +25,7 @@ export const App = () => {
 		time: {
 			useUTC: false,
 		},
+
 		rangeSelector: {
 			buttons: [
 				{
@@ -43,7 +44,7 @@ export const App = () => {
 				},
 			],
 			inputEnabled: false,
-			selected: 0,
+			selected: 2,
 		},
 
 		title: {
@@ -59,16 +60,19 @@ export const App = () => {
 				name: "point value",
 				data: (function () {
 					// generate an array of random data
-					const data = [];
 					const time = new Date().getTime();
+					let value = 100;
 
-					for (let i = -999; i <= 0; i += 1) {
-						data.push([
-							time + i * 1000,
-							Math.round(Math.random() * 100),
-						]);
+					function generateDatas(count) {
+						const data = [];
+						for (let i = -count; i <= 0; i += 1) {
+							value = Math.round(Math.random() * 10 - 5 + value);
+							data.push([time + i * 1000, value]);
+						}
+						return data;
 					}
-					return data;
+
+					return generateDatas(2000);
 				})(),
 			},
 		],

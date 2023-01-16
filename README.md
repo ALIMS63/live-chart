@@ -1,4 +1,3 @@
-
 ## Project installation
 
 ### `npm i`
@@ -18,6 +17,7 @@ You may also see any lint errors in the console.
 ### `npm run format`
 
 Format the project using prettier
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
